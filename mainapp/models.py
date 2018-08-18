@@ -162,7 +162,7 @@ class NGO(models.Model):
     organisation_address = models.TextField(default='', verbose_name="Address of Organization")
     name = models.CharField(max_length=100, verbose_name="Contact Person")
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone = models.CharField(validators=[phone_regex], max_length=17, blank=True) # validators should be a list
+    phone = models.CharField(validators=[phone_regex], max_length=17, blank=False) # validators should be a list
     description = models.TextField(verbose_name="About Organisation")
     area = models.TextField(
         verbose_name = "Area of volunteering"
@@ -266,7 +266,7 @@ class RescueCamp(models.Model):
     data_entry_user = models.ForeignKey(User,models.SET_NULL,blank=True,null=True,help_text="This camp's coordinator page will be visible only to this user")
     map_link = models.CharField(max_length=250, verbose_name='Map link',blank=True,null=True,help_text="Copy and paste the full Google Maps link")
     latlng = models.CharField(max_length=100, verbose_name='GPS Coordinates', blank=True,help_text="Comma separated latlng field. Leave blank if you don't know it")
-        
+
     total_people = models.IntegerField(null=True,blank=True,verbose_name="Total Number of People")
     total_males = models.IntegerField(null=True,blank=True,verbose_name="Number of Males")
     total_females = models.IntegerField(null=True,blank=True,verbose_name="Number of Females")
